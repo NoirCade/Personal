@@ -40,7 +40,8 @@ def cam_recog():
         time_start = time.time()
         while True:
             ret, frame = cap.read()
-            # 왜 RGB 변환을 2번 해야 되는걸까?
+            # 왜 RGB 변환을 2번 해야 되는걸까? => 웹캠으로 받아온 화면상의 어레이 데이터를 이미지 형태로 바꾸기 위해 PIL을 사용하는데,
+            # PIL은 RGB로 읽기 때문에 한번 변환하고 이후 다시 CV2로 화면에 표시(imshow)하기 때문에 BGR로 변환!
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             frame = cv2.flip(frame, 1)
             pil_img = Image.fromarray(frame)
